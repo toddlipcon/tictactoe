@@ -1,9 +1,10 @@
 #include <Xm/Xm.h>
-
+#include "defs.h"
 #include "globals.h"
 #include "tictactoe.h"
 #include "procs.h"
-
+#include <stdint.h>
+#include <stdlib.h>
 
 void reload_pms() {
   int x, y;
@@ -14,7 +15,9 @@ void reload_pms() {
   for (x = 0; x < 3; x++) {
     for (y = 0; y < 3; y++) {
       if (letter(grid[x][y]) == UD_BLANK)
-	XtVaSetValues(grid[x][y], XmNlabelPixmap, BLANK_PIXMAP, NULL);
+	XtVaSetValues(grid[x][y],
+          XmNlabelType, XmPIXMAP,
+          XmNlabelPixmap, BLANK_PIXMAP, NULL);
       if (letter(grid[x][y]) == UD_X) 
 	XtVaSetValues(grid[x][y], XmNlabelPixmap, X_PIXMAP, NULL);
       if (letter(grid[x][y]) == UD_O)
@@ -100,7 +103,7 @@ void resize_cb(Widget widget, XtPointer client_data, XtPointer call_data) {
 }
 
 void filemenu_cb(Widget widget, XtPointer client_data, XtPointer call_data) {
-  int ev  = (int)client_data;
+  uint64_t ev  = (uint64_t)client_data;
   switch (ev) 
     {
     case GAME_QUIT_ITEM:
@@ -119,7 +122,7 @@ void pb_cb(Widget widget, XtPointer client_data, XtPointer call_data) {
   int x,y,data,myname;
   Pixmap the_pixmap;
 
-  data = (int)client_data;
+  data = (uint64_t)client_data;
   y = data % 10;
   x = (data - (data % 10)) / 10;
   if (letter(widget) == UD_BLANK) {

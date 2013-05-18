@@ -7,15 +7,23 @@
 #include <Xm/Form.h>
 #include <Xm/DrawingA.h>
 #include <Xm/Label.h>
+#include "defs.h"
 #include "callbacks.h"
-#include "globals.h"
 #include "procs.h"
+#include <stdint.h>
+
+int turn;
+Pixmap O_PIXMAP;
+Pixmap X_PIXMAP = 0;
+Pixmap BLANK_PIXMAP = 0;
+GC gc;
+Widget grid[3][3];
 
 void main(int argc, char *argv[]) {
   Widget toplevel, MainWindow, MenuBar, GamePullDown, form, draw_a;
   XmString label_str;
   XtAppContext app;
-  int x,y;
+  uint64_t x,y;
 
   XtSetLanguageProc(NULL,NULL,NULL);
   toplevel = XtVaAppInitialize(&app, "Demo", NULL, 0, &argc, argv, NULL,

@@ -1,5 +1,5 @@
 #CC = cc
-CC = gcc -Wall
+CC = gcc -Wall -g
 #OPTIONS = -g -DDEBUG
 #CFLAGS = -O3
 

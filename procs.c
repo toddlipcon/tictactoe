@@ -1,6 +1,7 @@
 #include <Xm/XmAll.h>
-
+#include "defs.h"
 #include "globals.h"
+#include <stdint.h>
 
 void setletter();
 
@@ -57,10 +58,10 @@ void do_startover() {
 }
 
 int letter(Widget w) {
-  int i;
+  uint64_t i;
 
   //printf("in letter()\n");
-  XtVaGetValues(w, XmNuserData, &i, NULL);
+  XtVaGetValues(w, XmNuserData, (XtPointer *)&i, NULL);
   //printf("i = %d\n", i);
   //printf("out of letter()\n");
   return(i);
