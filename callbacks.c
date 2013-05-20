@@ -9,9 +9,10 @@
 void reload_pms() {
   int x, y;
 
-  if (X_PIXMAP) 
+  if (X_PIXMAP) {
 //    printf("still here\n");
 //  printf("In reload_pms\n");
+  }
   for (x = 0; x < 3; x++) {
     for (y = 0; y < 3; y++) {
       if (letter(grid[x][y]) == UD_BLANK)
